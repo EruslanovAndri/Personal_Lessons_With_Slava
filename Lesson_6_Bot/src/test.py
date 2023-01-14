@@ -1,0 +1,10 @@
+from loader import db
+# # print(db.create_tabel_users())
+# print(db.select_all_users())
+# # print(db.add_user())
+# print(db.select_user_info(id=907514331))
+# print(db.update_users_phone(id=907514331,phone='9999999999999'))
+# print(db.select_all_users())
+print(db.create_tabel_items())
+print(db.add_item_in_the_tabel_items(id='444444',description='Часы Rolex'))
+print(db.show_all_items())
