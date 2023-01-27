@@ -70,7 +70,7 @@ async def see_new_item(call: types.CallbackQuery):
                 f'\n Amount: {count}'
 
     photo = InputFile(path_or_bytesio=path_to_photo)
-    await bot.edit_massage_media(media=InputMediaPhoto(media=photo,
+    await bot.edit_message_media(media=InputMediaPhoto(media=photo,
                                                        caption=item_text),
 
                                  chat_id=call.message.chat.id,
