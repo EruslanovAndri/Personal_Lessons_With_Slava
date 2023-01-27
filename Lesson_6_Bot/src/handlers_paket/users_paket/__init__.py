@@ -1,4 +1,4 @@
-from .commands import dp
+from .commands import *
 from .text_answer import dp
 
 

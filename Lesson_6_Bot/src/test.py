@@ -1,10 +1,12 @@
 from loader import db
-# # print(db.create_tabel_users())
-# print(db.select_all_users())
-# # print(db.add_user())
-# print(db.select_user_info(id=907514331))
-# print(db.update_users_phone(id=907514331,phone='9999999999999'))
-# print(db.select_all_users())
-print(db.create_tabel_items())
-print(db.add_item_in_the_tabel_items(id='444444',description='Часы Rolex'))
+import db_api_paket
+
+
+db = db_api_paket.Database('/Users/eruslanovandrey/Personal_Lessons_With_Slava/Lesson_6_Bot/src/db_api_paket/database/shop_database.db')
+# db.add_item_in_the_tabel_items(id=12,description='Patek Philippe Nautilus 5712A',path_to_photo=r'/Users/eruslanovandrey/Personal_Lessons_With_Slava/Lesson_6_Bot/src/db_api_paket/database/items_photo/5712A.png',count=1)
+# db.add_item_in_the_tabel_items(id=22,description='Patek Philippe Nautilus 5712R',count=1,path_to_photo=r'/Users/eruslanovandrey/Personal_Lessons_With_Slava/Lesson_6_Bot/src/db_api_paket/database/items_photo/5712R.png')
+# db.add_item_in_the_tabel_items(id=33,description='Patek Philippe Nautilus 5740G',count=1,path_to_photo=r'/Users/eruslanovandrey/Personal_Lessons_With_Slava/Lesson_6_Bot/src/db_api_paket/database/items_photo/5740G.png')
+# db.add_item_in_the_tabel_items(id=44,description='Patek Philippe Nautilus 5980R',count=1,path_to_photo=r'/Users/eruslanovandrey/Personal_Lessons_With_Slava/Lesson_6_Bot/src/db_api_paket/database/items_photo/5980R.png')
 print(db.show_all_items())
+print(db.get_item_count())
+

@@ -124,3 +124,53 @@ print(colomn2) # показывает только столбец из матр�
 
 diagonal = [m[i][i] for i in [0,1,2]]
 print(diagonal)
+
+l = [1,2,3,4]
+m = l
+print(m)
+print(l == m)
+print(l is m)
+
+import sys
+print(sys.getrefcount(1))
+
+# Метод replace позволяет изменить строку.
+my_str = "Hope"
+changed_str = my_str.replace('o','ttttt')
+print(my_str.replace('o',"xxxx"))
+print(changed_str)
+print(my_str)
+
+# Форматирование строк 
+str1 = "This is %d %s bird" % (1,'dead')
+print(str1)
+str2 = 'This is {0} {1} bird'.format(1,'dead')
+print(str2)
+
+str3 = "xxxxSPAMxxxxSPAMxxxx"
+where = str3.find('SPAM')
+str3 = str3[:where] + 'FIND' + str3[(where+4):]
+print(str3)
+print(str3.replace("SPAM","GGGG",1))
+l= list(str3)
+print(type(l))
+l[3] = "y"
+print(l)
+s = "".join(l)
+print(s)
+
+x = 12234
+res = "Int: %d....%06d...."% (x,x)
+print(res)
+
+# dict = {}
+# dict['name:'] = input("Enter your name ")
+# dict['age:'] = input('Enter your age ')
+# print(dict['name:'],dict['age:'].format())
+
+name = input('Enter name ')
+age = input('Enter age ')
+msg = f'{name},{age}'
+print(msg)
+    
+

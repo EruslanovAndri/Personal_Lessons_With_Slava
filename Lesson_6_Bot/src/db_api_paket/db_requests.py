@@ -12,7 +12,7 @@ class Database:
         return sqlite3.connect(self.db_path)
 
     # подключаем все запросы с БД
-    def execute(self, sql: str, parameters: tuple = tuple(),
+    def execute(self, sql: str, parameters: tuple=tuple(),
                 fetchone=False, fetchall=False, commit=False):
         connection = self.connection
         cursor = connection.cursor()
@@ -59,9 +59,11 @@ class Database:
 
     def delete_all(self):
         self.execute('DELETE FROM Users WHERE True', commit=True)
+        self.execute('DELETE FROM Items WHERE True',commit=True)
 
     def drop_all(self):
         self.execute('DROP TABLES Users', commit=True)
+        self.execute('DROP TABLES Items', commit=True)
 
     def update_users_phone(self,id: int, phone: str):
         sql = 'UPDATE Users SET phone=? WHERE id=?'
@@ -76,19 +78,40 @@ class Database:
         CREATE TABLE Items(
         id int NOT NULL,
         description text,
+        path_to_photo text,
+        count int,
         PRIMARY KEY (id)
         );
         '''
         self.execute(sql,commit=True)
 
-    def add_item_in_the_tabel_items(self, id: int, description: str):
-        sql = 'INSERT INTO Items (id,description) VALUES(?,?) '
-        parameters = (id,description)
+    def add_item_in_the_tabel_items(self, id: int, description: str, path_to_photo: str,count: int):
+        sql = 'INSERT INTO Items (id,description,path_to_photo,count) VALUES(?,?,?,?) '
+        parameters = (id,description,path_to_photo,count)
         self.execute(sql, parameters, commit=True)
+
+    def select_item_info(self,**kwargs) -> list:
+        sql = 'SELECT * FROM Items WHERE '
+        sql,parameters =self.format_args(sql,kwargs)
+        return self.execute(sql,parameters, fetchall=True)
+
 
     def show_all_items(self):
         sql = 'SELECT * FROM Items '
         return self.execute(sql, fetchall=True)
+
+    def update_item_count(self, id: int, count: str):
+        sql = 'UPDATE Items SET count=? WHERE id=?'
+        return self.execute(sql, parameters=(count,id), commit=True)
+
+    def get_item_count(self) -> int:
+        sql = 'SELECT * FROM Items'
+        return len(self.execute(sql,fetchall=True))
+
+    
+
+
+    
 
     
 
