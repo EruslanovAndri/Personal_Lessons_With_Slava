@@ -45,34 +45,6 @@ async def answer_buy_command(message: types.Message):
         await message.answer(text='Увы!')
 
 
-@dp.message_handler(text=['Список товара'])
-@dp.message_handler(text=['Item'])
-async def answer_menu_command(message: types.Message):
-    first_item_info = db.select_item_info(id=1)
-    first_item_info = first_item_info[0]
-    _, description, path_to_photo, count = first_item_info
-    item_text = f'Model: {description}'\
-                f'\n Amount: {count}'
-    photo = InputFile(path_or_bytesio=path_to_photo)
-    await message.answer_photo(photo=photo,
-                               caption=item_text,
-                               reply_markup=get_item_inline_keyboard())
 
 
-@dp.callback_query_handler(navigation_items_callback.filter(for_data='items'))
-async def see_new_item(call: types.CallbackQuery):
-    print(call.data)
-    current_item_id = int(call.data.split(':')[-1])
-    first_item_info = db.select_item_info(id=current_item_id)
-    first_item_info = first_item_info[0]
-    _, description, path_to_photo, count = first_item_info
-    item_text = f'Model: {description}'\
-                f'\n Amount: {count}'
 
-    photo = InputFile(path_or_bytesio=path_to_photo)
-    await bot.edit_message_media(media=InputMediaPhoto(media=photo,
-                                                       caption=item_text),
-
-                                 chat_id=call.message.chat.id,
-                                 message_id=call.message.message_id,
-                                 reply_markup=get_item_inline_keyboard(id=current_item_id))
